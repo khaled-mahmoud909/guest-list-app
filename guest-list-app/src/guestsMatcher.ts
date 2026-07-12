@@ -16,7 +16,11 @@ export interface GuestMatch {
 const ORDERED_TABLES = new Set([5, 6, 7, 8, 9]);
 
 function normalize(name: string): string {
-    return name.trim().toLowerCase().replace(/\s+/g, " ");
+    return name
+        .normalize("NFKC")          // handles curly quotes / unicode variants from mobile keyboards
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, " ");
 }
 
 export class GuestDirectory {
@@ -29,15 +33,16 @@ export class GuestDirectory {
             if (ORDERED_TABLES.has(guest.table)) {
                 if (!guest.side || !guest.position) {
                     throw new Error(
-                        `Guest "${guest.name}" is at table ${guest.table} (seat order matters) but is missing side/position.`
+                        `Data error: "${guest.name}" is at table ${guest.table} (seat order matters) but is missing side/position.`
                     );
                 }
             }
 
             if (this.byName.has(key)) {
-                // Don't hard-crash the whole app on a duplicate — flag it instead,
-                // since a wedding guest list realistically may have near-duplicate names.
-                console.warn(`Duplicate name in guest list: "${guest.name}"`);
+                throw new Error(
+                    `Data error: duplicate name detected — "${guest.name}" collides with an existing entry. ` +
+                    `Since duplicates shouldn't exist in this guest list, check for a typo or accidental repeated row.`
+                );
             }
 
             this.byName.set(key, guest);
