@@ -1,7 +1,8 @@
 import fs from "fs";
 
 const guests = JSON.parse(fs.readFileSync("./src/guests.json", "utf-8"));
-const ORDERED_TABLES = new Set([5, 6, 7, 8, 9]);
+const ORDERED_TABLES = new Set([5, 6, 7, 8, 9, 10]);
+const VALID_SIDES = new Set(["left", "right", "near", "end1", "end2"]);
 const errors = [];
 const seenNames = new Set();
 
@@ -13,12 +14,12 @@ for (const guest of guests) {
     }
     seenNames.add(key);
 
-    if (!guest.table || guest.table < 1 || guest.table > 9) {
+    if (!guest.table || guest.table < 1 || guest.table > 10) {
         errors.push(`Invalid table number for "${guest.name}": ${guest.table}`);
     }
 
     if (ORDERED_TABLES.has(guest.table)) {
-        if (guest.side !== "left" && guest.side !== "right") {
+        if (!VALID_SIDES.has(guest.side)) {
             errors.push(`"${guest.name}" (table ${guest.table}) has invalid/missing side: ${guest.side}`);
         }
         if (!guest.position || guest.position < 1) {

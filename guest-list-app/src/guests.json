@@ -192,6 +192,10 @@
         "table": 4
     },
     {
+        "name": "Bingzhe Liew",
+        "table": 4
+    },
+    {
         "name": "Xu Bin Kuang",
         "table": 4
     },
@@ -338,7 +342,7 @@
         "position": 7
     },
     {
-        "name": "Tiwi Wai Yong",
+        "name": "Tim Wai Yong",
         "table": 6,
         "side": "left",
         "position": 8
@@ -356,7 +360,7 @@
         "position": 10
     },
     {
-        "name": "Tl Tan",
+        "name": "Tan TL",
         "table": 6,
         "side": "right",
         "position": 1
@@ -414,5 +418,431 @@
         "table": 6,
         "side": "right",
         "position": 10
+    },
+    {
+        "name": "Ooi Khiang Lim",
+        "table": 7,
+        "side": "left",
+        "position": 1
+    },
+    {
+        "name": "Mathilda Kam",
+        "table": 7,
+        "side": "left",
+        "position": 2
+    },
+    {
+        "name": "Veronica Lim",
+        "table": 7,
+        "side": "left",
+        "position": 3
+    },
+    {
+        "name": "Chow Ching Leow",
+        "table": 7,
+        "side": "left",
+        "position": 4
+    },
+    {
+        "name": "Choon Koo",
+        "table": 7,
+        "side": "left",
+        "position": 5
+    },
+    {
+        "name": "Doreen Lim",
+        "table": 7,
+        "side": "left",
+        "position": 6
+    },
+    {
+        "name": "Maggie Lim",
+        "table": 7,
+        "side": "left",
+        "position": 7
+    },
+    {
+        "name": "Tina Lim",
+        "table": 7,
+        "side": "left",
+        "position": 8
+    },
+    {
+        "name": "Sam Lim",
+        "table": 7,
+        "side": "left",
+        "position": 9
+    },
+    {
+        "name": "Cynthia Ch'ng",
+        "table": 7,
+        "side": "left",
+        "position": 10
+    },
+    {
+        "name": "Marcel Stewart",
+        "table": 7,
+        "side": "right",
+        "position": 1
+    },
+    {
+        "name": "Elaine Stewart",
+        "table": 7,
+        "side": "right",
+        "position": 2
+    },
+    {
+        "name": "Carol Stewart",
+        "table": 7,
+        "side": "right",
+        "position": 3
+    },
+    {
+        "name": "Matthew Krishnan",
+        "table": 7,
+        "side": "right",
+        "position": 4
+    },
+    {
+        "name": "Colin Stewart",
+        "table": 7,
+        "side": "right",
+        "position": 5
+    },
+    {
+        "name": "Sarena",
+        "table": 7,
+        "side": "right",
+        "position": 6
+    },
+    {
+        "name": "Angeline Stewart",
+        "table": 7,
+        "side": "right",
+        "position": 7
+    },
+    {
+        "name": "Linda Stewart",
+        "table": 7,
+        "side": "right",
+        "position": 8
+    },
+    {
+        "name": "Regina Rathanam",
+        "table": 7,
+        "side": "right",
+        "position": 9
+    },
+    {
+        "name": "Saimon Senivasan",
+        "table": 7,
+        "side": "right",
+        "position": 10
+    },
+    {
+        "name": "Poi Kim Tay",
+        "table": 8,
+        "side": "left",
+        "position": 1
+    },
+    {
+        "name": "Jacqueline Tay",
+        "table": 8,
+        "side": "left",
+        "position": 2
+    },
+    {
+        "name": "Jordan Tay",
+        "table": 8,
+        "side": "left",
+        "position": 3
+    },
+    {
+        "name": "Kye Li Tan",
+        "table": 8,
+        "side": "left",
+        "position": 4
+    },
+    {
+        "name": "Justin Lim",
+        "table": 8,
+        "side": "left",
+        "position": 5
+    },
+    {
+        "name": "Joanne Wong",
+        "table": 8,
+        "side": "left",
+        "position": 6
+    },
+    {
+        "name": "Jeanna Lim",
+        "table": 8,
+        "side": "left",
+        "position": 7
+    },
+    {
+        "name": "Julynn Lim",
+        "table": 8,
+        "side": "left",
+        "position": 8
+    },
+    {
+        "name": "Jason Mahendran",
+        "table": 8,
+        "side": "left",
+        "position": 9
+    },
+    {
+        "name": "Dianne Mahendran",
+        "table": 8,
+        "side": "left",
+        "position": 10
+    },
+    {
+        "name": "Michelle Stewart",
+        "table": 8,
+        "side": "right",
+        "position": 1
+    },
+    {
+        "name": "Jason Leow",
+        "table": 8,
+        "side": "right",
+        "position": 2
+    },
+    {
+        "name": "Cheryl Stewart",
+        "table": 8,
+        "side": "right",
+        "position": 3
+    },
+    {
+        "name": "Rosalie Ong",
+        "table": 8,
+        "side": "right",
+        "position": 4
+    },
+    {
+        "name": "Henri Ong",
+        "table": 8,
+        "side": "right",
+        "position": 5
+    },
+    {
+        "name": "Wei Zer Goh",
+        "table": 8,
+        "side": "right",
+        "position": 6
+    },
+    {
+        "name": "Jazree Lim",
+        "table": 8,
+        "side": "right",
+        "position": 7
+    },
+    {
+        "name": "Bryan Stewart",
+        "table": 8,
+        "side": "right",
+        "position": 8
+    },
+    {
+        "name": "Daryl Stewart",
+        "table": 8,
+        "side": "right",
+        "position": 9
+    },
+    {
+        "name": "Jarrod Stewart",
+        "table": 8,
+        "side": "right",
+        "position": 10
+    },
+    {
+        "name": "Nelson Danker",
+        "table": 8,
+        "side": "right",
+        "position": 11
+    },
+    {
+        "name": "Yong Jian Koo",
+        "table": 9,
+        "side": "left",
+        "position": 1
+    },
+    {
+        "name": "Jia Ying Koo",
+        "table": 9,
+        "side": "left",
+        "position": 2
+    },
+    {
+        "name": "Tania Hsu",
+        "table": 9,
+        "side": "left",
+        "position": 3
+    },
+    {
+        "name": "Brian Hsu",
+        "table": 9,
+        "side": "left",
+        "position": 4
+    },
+    {
+        "name": "Cae-Li Chiew",
+        "table": 9,
+        "side": "left",
+        "position": 5
+    },
+    {
+        "name": "David Soh",
+        "table": 9,
+        "side": "left",
+        "position": 6
+    },
+    {
+        "name": "Li-Anne Chiew",
+        "table": 9,
+        "side": "left",
+        "position": 7
+    },
+    {
+        "name": "Natt-Li Chiew",
+        "table": 9,
+        "side": "left",
+        "position": 8
+    },
+    {
+        "name": "Will Lim",
+        "table": 9,
+        "side": "left",
+        "position": 9
+    },
+    {
+        "name": "Wayne Lim",
+        "table": 9,
+        "side": "left",
+        "position": 10
+    },
+    {
+        "name": "Chia Weng Teoh",
+        "table": 9,
+        "side": "left",
+        "position": 11
+    },
+    {
+        "name": "Derick Choe",
+        "table": 9,
+        "side": "right",
+        "position": 1
+    },
+    {
+        "name": "Sze Yin Tan",
+        "table": 9,
+        "side": "right",
+        "position": 2
+    },
+    {
+        "name": "Soo Han Khoo",
+        "table": 9,
+        "side": "right",
+        "position": 3
+    },
+    {
+        "name": "Sabrina Seow",
+        "table": 9,
+        "side": "right",
+        "position": 4
+    },
+    {
+        "name": "Shun Ning Tan",
+        "table": 9,
+        "side": "right",
+        "position": 5
+    },
+    {
+        "name": "Evan Soo",
+        "table": 9,
+        "side": "right",
+        "position": 6
+    },
+    {
+        "name": "Khe Lyn Lim",
+        "table": 9,
+        "side": "right",
+        "position": 7
+    },
+    {
+        "name": "David Chew",
+        "table": 9,
+        "side": "right",
+        "position": 8
+    },
+    {
+        "name": "Sheryl Teo",
+        "table": 9,
+        "side": "right",
+        "position": 9
+    },
+    {
+        "name": "Joyi Mok",
+        "table": 9,
+        "side": "right",
+        "position": 10
+    },
+    {
+        "name": "Ronald Teoh",
+        "table": 9,
+        "side": "right",
+        "position": 11
+    },
+    {
+        "name": "Yong Fook Lim",
+        "table": 10,
+        "side": "near",
+        "position": 1
+    },
+    {
+        "name": "Kenny Tay",
+        "table": 10,
+        "side": "near",
+        "position": 2
+    },
+    {
+        "name": "Joseph Tay",
+        "table": 10,
+        "side": "near",
+        "position": 3
+    },
+    {
+        "name": "Nicole Stewart",
+        "table": 10,
+        "side": "near",
+        "position": 4
+    },
+    {
+        "name": "Sharon Lim",
+        "table": 10,
+        "side": "near",
+        "position": 5
+    },
+    {
+        "name": "Li Ling Lim",
+        "table": 10,
+        "side": "near",
+        "position": 6
+    },
+    {
+        "name": "Sau Moi Wong",
+        "table": 10,
+        "side": "end1",
+        "position": 1
+    },
+    {
+        "name": "Gary Stewart",
+        "table": 10,
+        "side": "end2",
+        "position": 1
     }
 ]

@@ -1,7 +1,7 @@
 export interface Guest {
     name: string;
     table: number;
-    side?: "left" | "right";
+    side?: "left" | "right" | "near" | "end1" | "end2";
     position?: number;
 }
 
@@ -9,11 +9,11 @@ export interface GuestMatch {
     found: boolean;
     name?: string;
     table?: number;
-    side?: "left" | "right";
+    side?: "left" | "right" | "near" | "end1" | "end2";
     position?: number;
 }
 
-const ORDERED_TABLES = new Set([5, 6, 7, 8, 9]);
+const ORDERED_TABLES = new Set([5, 6, 7, 8, 9, 10]);
 
 function normalize(name: string): string {
     return name

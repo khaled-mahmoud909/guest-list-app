@@ -56,28 +56,32 @@ export default function CheckIn({ onFound }: Props) {
 
 const styles: Record<string, React.CSSProperties> = {
     container: {
-        maxWidth: 400,
-        margin: "80px auto",
-        padding: 24,
+        maxWidth: 420,
+        margin: "0 auto",
+        padding: "48px 20px",
         textAlign: "center",
         fontFamily: "sans-serif",
     },
     input: {
         width: "100%",
-        padding: 12,
-        fontSize: 16,
+        padding: "14px 12px",
+        fontSize: 16,          // must stay >=16px to prevent iOS auto-zoom on focus
         marginTop: 16,
         boxSizing: "border-box",
+        borderRadius: 8,
+        border: "1px solid #ccc",
     },
     button: {
         width: "100%",
-        padding: 12,
+        padding: "14px 12px",  // taller = easier thumb target
         fontSize: 16,
         marginTop: 12,
         cursor: "pointer",
+        borderRadius: 8,
     },
     error: {
         color: "#b00020",
         marginTop: 16,
+        fontSize: 15,
     },
 };
