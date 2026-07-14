@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { TABLES, type TableConfig } from "./floorPlanConfig";
-import { type GuestMatch } from "./guestsMatcher";
+import { type GuestInfo } from "./guestsMatcher";
 import { theme } from "./theme";
 
 const SEAT_RADIUS = 9;
 const SEAT_GAP = 6;
 
 interface Props {
-    match: GuestMatch;
+    match: GuestInfo;
     onSearchDifferentName: () => void;
 }
 
