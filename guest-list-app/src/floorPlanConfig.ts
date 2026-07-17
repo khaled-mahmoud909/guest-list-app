@@ -29,6 +29,6 @@ export const TABLES: TableConfig[] = [
     { id: 5, label: "Table 5 (10 pax)", x: 60, y: 480, width: 90, height: 220, type: "ordered", leftSeats: 5, rightSeats: 5 },
     { id: 6, label: "Table 6 (20 pax)", x: 260, y: 460, width: 90, height: 260, type: "ordered", leftSeats: 10, rightSeats: 10 },
     { id: 7, label: "Table 7 (20 pax)", x: 460, y: 460, width: 90, height: 260, type: "ordered", leftSeats: 10, rightSeats: 10 },
-    { id: 8, label: "Table 8 (21 pax)", x: 660, y: 460, width: 90, height: 260, type: "ordered", leftSeats: 10, rightSeats: 11 },
+    { id: 8, label: "Table 8 (20 pax)", x: 660, y: 460, width: 90, height: 260, type: "ordered", leftSeats: 10, rightSeats: 10 },
     { id: 9, label: "Table 9 (22 pax)", x: 860, y: 460, width: 90, height: 260, type: "ordered", leftSeats: 11, rightSeats: 11 },
 ];
