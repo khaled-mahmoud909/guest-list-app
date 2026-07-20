@@ -2,7 +2,7 @@ import QRCode from "qrcode";
 import fs from "fs";
 
 // Replace with your actual deployed Vercel URL once you have it
-const CHECKIN_URL = "https://josephandnicolefms.vercel.app/";
+const CHECKIN_URL = "https://seanandvanessafms.vercel.app/";
 
 const outputDir = "./qr-output";
 if (!fs.existsSync(outputDir)) {
