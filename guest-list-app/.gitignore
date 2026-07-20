@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+E:\projects\GuestSeating\guest-list-app\node_modules
+E:\projects\GuestSeating\node_modules
 
 # Editor directories and files
 .vscode/*
