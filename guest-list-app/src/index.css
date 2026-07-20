@@ -15,7 +15,7 @@ body,
 }
 
 body {
-  background: #F3F2ED;
+  background: #F7F0E3;
   font-family: 'Jost', sans-serif;
 }
 
@@ -30,40 +30,40 @@ body {
 }
 
 .btn-primary {
-  background: #696543;
-  color: #F3F2ED;
+  background: #86603B;
+  color: #F7F0E3;
   border: none;
 }
 
 .btn-primary:hover {
-  background: #696543;
-  color: #F3F2ED;
-  box-shadow: 0 4px 14px rgba(105, 101, 67, 0.35);
+  background: #9B7348;
+  color: #F7F0E3;
+  box-shadow: 0 4px 14px rgba(134, 96, 59, 0.35);
 }
 
 .btn-primary:active {
-  background: #4a4730;
-  color: #F3F2ED;
+  background: #6B4C2E;
+  color: #F7F0E3;
 }
 
 .btn-secondary {
   background: transparent;
-  color: #696543;
-  border: 1px solid #696543;
+  color: #86603B;
+  border: 1px solid #86603B;
 }
 
 .btn-secondary:hover {
-  background: #696543;
-  color: #F3F2ED;
+  background: #86603B;
+  color: #F7F0E3;
 }
 
 .btn-secondary:active {
-  background: #4a4730;
-  color: #F3F2ED;
+  background: #6B4C2E;
+  color: #F7F0E3;
 }
 
 input:focus {
   outline: none;
-  border-color: #696543 !important;
-  box-shadow: 0 0 0 3px rgba(105, 101, 67, 0.15);
+  border-color: #86603B !important;
+  box-shadow: 0 0 0 3px rgba(134, 96, 59, 0.15);
 }

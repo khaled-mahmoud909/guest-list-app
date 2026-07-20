@@ -46,7 +46,7 @@ export default function CheckIn({ onFound }: Props) {
         <div style={styles.page}>
             <div style={styles.container}>
                 <p style={styles.bigDay}>The Big Day</p>
-                <h2 style={styles.coupleNames}>Joseph &amp; Nicole</h2>
+                <h2 style={styles.coupleNames}>Sean &amp; Vanessa</h2>
 
                 <div style={styles.divider} />
 
@@ -133,7 +133,7 @@ export default function CheckIn({ onFound }: Props) {
 const styles: Record<string, React.CSSProperties> = {
     page: {
         minHeight: "100vh",
-        background: theme.colors.background,
+        background: `${theme.colors.background} url('/bg.png') center / cover no-repeat`,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

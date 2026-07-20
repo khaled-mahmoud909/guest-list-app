@@ -3,8 +3,8 @@ import { TABLES, type TableConfig } from "./floorPlanConfig";
 import { type GuestInfo } from "./guestsMatcher";
 import { theme } from "./theme";
 
-const SEAT_RADIUS = 9;
-const SEAT_GAP = 6;
+const SEAT_RADIUS = 8;
+const SEAT_GAP = 5;
 
 interface Props {
     match: GuestInfo;
@@ -23,8 +23,8 @@ export default function FloorPlan({ match, onSearchDifferentName }: Props) {
     }, [highlightedTableId]);
 
     return (
-        <div style={{ minHeight: "100vh", background: theme.colors.background, fontFamily: theme.fonts.body }}>
-            <div style={{ maxWidth: 1000, margin: "0 auto", padding: "40px 20px" }}>
+        <div style={{ minHeight: "100vh", background: `${theme.colors.background} url('/bg.png') center / cover no-repeat`, fontFamily: theme.fonts.body }}>
+            <div style={{ maxWidth: 1100, margin: "0 auto", padding: "40px 20px" }}>
                 {/* Header */}
                 <div style={{ textAlign: "center", marginBottom: 32 }}>
                     <p style={{
@@ -49,8 +49,13 @@ export default function FloorPlan({ match, onSearchDifferentName }: Props) {
                         fontSize: 17, color: theme.colors.text, margin: "0 0 20px",
                         fontWeight: 400,
                     }}>
-                        Table <strong>{match.table}</strong>
-                        {match.side && <> — Seat <strong>{match.position}</strong></>}
+                        {match.table <= 20 ? (
+                            <>Table <strong>{match.table}</strong></>
+                        ) : (
+                            <>Viking Table <strong>{match.table - 20}</strong>
+                                {match.side && <> — Seat <strong>{match.position}</strong></>}
+                            </>
+                        )}
                     </p>
                     <button
                         onClick={onSearchDifferentName}
@@ -67,50 +72,57 @@ export default function FloorPlan({ match, onSearchDifferentName }: Props) {
 
                 {/* Floor Plan SVG */}
                 <svg
-                    viewBox="0 0 1000 800"
+                    viewBox="0 0 1000 1300"
                     width="100%"
                     style={{
-                        background: theme.colors.surface,
                         borderRadius: 12,
                         boxShadow: "0 2px 20px rgba(0,0,0,0.06)",
                         border: `1px solid ${theme.colors.border}`,
+                        overflow: "hidden",
                     }}
                 >
                     <defs>
+                        {/* Background image pattern with reduced opacity */}
+                        <pattern id="bgPattern" patternUnits="userSpaceOnUse" width="1000" height="1300">
+                            <image href="/bg.png" x="0" y="0" width="1000" height="1300" preserveAspectRatio="xMidYMid slice" opacity="0.35" />
+                        </pattern>
                         {/* Drop shadow for tables */}
                         <filter id="tableShadow" x="-10%" y="-10%" width="130%" height="140%">
-                            <feDropShadow dx="0" dy="2" stdDeviation="4" floodColor="#3A3826" floodOpacity="0.08" />
+                            <feDropShadow dx="0" dy="2" stdDeviation="4" floodColor="#3A2E1E" floodOpacity="0.08" />
                         </filter>
                         {/* Glow for highlighted table */}
                         <filter id="highlightGlow" x="-20%" y="-20%" width="140%" height="140%">
-                            <feDropShadow dx="0" dy="0" stdDeviation="8" floodColor={theme.colors.primary} floodOpacity="0.3" />
+                            <feDropShadow dx="0" dy="0" stdDeviation="8" floodColor={theme.colors.primary} floodOpacity="0.35" />
                         </filter>
                         {/* Glow for highlighted seat */}
                         <filter id="seatGlow" x="-60%" y="-60%" width="220%" height="220%">
                             <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor={theme.colors.primary} floodOpacity="0.5" />
                         </filter>
-                        {/* Subtle floor grid pattern */}
-                        <pattern id="floorGrid" width="40" height="40" patternUnits="userSpaceOnUse">
-                            <rect width="40" height="40" fill="none" />
-                            <line x1="40" y1="0" x2="40" y2="40" stroke={theme.colors.border} strokeWidth="0.3" strokeOpacity="0.4" />
-                            <line x1="0" y1="40" x2="40" y2="40" stroke={theme.colors.border} strokeWidth="0.3" strokeOpacity="0.4" />
-                        </pattern>
                     </defs>
 
-                    {/* Floor background with subtle grid */}
-                    <rect width="1000" height="800" fill="url(#floorGrid)" rx="12" />
+                    {/* Base cream background */}
+                    <rect width="1000" height="1300" fill={theme.colors.background} rx="12" />
+                    {/* Background pattern overlay */}
+                    <rect width="1000" height="1300" fill="url(#bgPattern)" rx="12" />
 
                     {/* Decorative border inset */}
-                    <rect x="16" y="16" width="968" height="768" rx="8" fill="none"
-                        stroke={theme.colors.border} strokeWidth="0.5" strokeDasharray="6 4" strokeOpacity="0.5" />
+                    <rect x="20" y="20" width="960" height="1260" rx="8" fill="none"
+                        stroke={theme.colors.primary} strokeWidth="0.8" strokeOpacity="0.3" />
 
+                    {/* ── L-Shape Carpet (under tables) ── */}
+                    <LShapeCarpet />
+
+                    {/* ── Static Sweetheart Table ── */}
+                    <SweetheartTable />
+
+                    {/* ── Dance Floor ── */}
+                    <DanceFloor />
+
+                    {/* ── All configured tables ── */}
                     {TABLES.map((table) => {
                         const isHighlighted = `table-${table.id}` === highlightedTableId;
-                        if (table.type === "simple") {
-                            return <SimpleTable key={table.id} table={table} isHighlighted={isHighlighted} />;
-                        }
-                        if (table.type === "vip") {
-                            return <VipTable key={table.id} table={table} isHighlighted={isHighlighted} highlightedSeatId={highlightedSeatId} />;
+                        if (table.type === "round") {
+                            return <RoundTable key={table.id} table={table} isHighlighted={isHighlighted} />;
                         }
                         return <OrderedTable key={table.id} table={table} isHighlighted={isHighlighted} highlightedSeatId={highlightedSeatId} />;
                     })}
@@ -120,47 +132,185 @@ export default function FloorPlan({ match, onSearchDifferentName }: Props) {
     );
 }
 
-/* ─── Helpers ─── */
+/* ─── Static Sweetheart Table (decorative — matching reference image) ─── */
 
-function splitLabel(label: string): { name: string; pax: string } {
-    const m = label.match(/^(.+?)\s*(\(.+\))$/);
-    return m ? { name: m[1], pax: m[2] } : { name: label, pax: "" };
+function SweetheartTable() {
+    const cx = 500;
+    const cy = 120;
+    const w = 260;
+    const h = 60;
+
+    return (
+        <g>
+            {/* Outer border */}
+            <rect
+                x={cx - w / 2 - 4} y={cy - h / 2 - 4}
+                width={w + 8} height={h + 8} rx={4}
+                fill="none"
+                stroke={theme.colors.primary}
+                strokeWidth={2}
+            />
+            {/* Filled brown background */}
+            <rect
+                x={cx - w / 2} y={cy - h / 2}
+                width={w} height={h} rx={2}
+                fill={theme.colors.primary}
+            />
+            {/* "Sweetheart Table" label */}
+            <text x={cx} y={cy + 2} textAnchor="middle" dominantBaseline="central"
+                fontSize={20} fontFamily={theme.fonts.heading} fill="#FFFFFF"
+                fontWeight={500}
+            >
+                Sweetheart Table
+            </text>
+
+            {/* ── Chairs above the table ── */}
+            {/* Left end chair (brown, no label) */}
+            <rect x={cx - 80} y={cy - h / 2 - 42} width={28} height={26} rx={8}
+                fill="none" stroke={theme.colors.primary} strokeWidth={2} />
+            <rect x={cx - 80} y={cy - h / 2 - 42} width={28} height={10} rx={4}
+                fill={theme.colors.primary} />
+
+            {/* Bride chair (pink) */}
+            <rect x={cx - 36} y={cy - h / 2 - 44} width={32} height={30} rx={8}
+                fill="#F8E8E6" stroke="#D88A82" strokeWidth={1.8} />
+            <text x={cx - 20} y={cy - h / 2 - 26} textAnchor="middle" dominantBaseline="central"
+                fontSize={9} fill="#C0645C" fontFamily={theme.fonts.body} fontWeight={500}
+            >Bride</text>
+
+            {/* Groom chair (blue) */}
+            <rect x={cx + 4} y={cy - h / 2 - 44} width={32} height={30} rx={8}
+                fill="#E6F0F6" stroke="#5B9EC4" strokeWidth={1.8} />
+            <text x={cx + 20} y={cy - h / 2 - 26} textAnchor="middle" dominantBaseline="central"
+                fontSize={9} fill="#3A7FA8" fontFamily={theme.fonts.body} fontWeight={500}
+            >Groom</text>
+
+            {/* Right end chair (brown, no label) */}
+            <rect x={cx + 52} y={cy - h / 2 - 42} width={28} height={26} rx={8}
+                fill="none" stroke={theme.colors.primary} strokeWidth={2} />
+            <rect x={cx + 52} y={cy - h / 2 - 42} width={28} height={10} rx={4}
+                fill={theme.colors.primary} />
+        </g>
+    );
 }
 
-/* ─── Simple Table ─── */
+/* ─── Dance Floor ─── */
 
-function SimpleTable({ table, isHighlighted }: { table: TableConfig; isHighlighted: boolean }) {
-    const { name, pax } = splitLabel(table.label);
+function DanceFloor() {
+    const cx = 500;
+    const cy = 260;
+    const w = 260;
+    const h = 110;
+
     return (
-        <g id={`table-${table.id}`} filter={isHighlighted ? "url(#highlightGlow)" : "url(#tableShadow)"}>
+        <g>
+            {/* Outer border (double border like the reference image) */}
             <rect
-                x={table.x} y={table.y} width={table.width} height={table.height} rx={14}
-                fill={isHighlighted ? theme.colors.surfaceMuted : theme.colors.surface}
-                stroke={isHighlighted ? theme.colors.primary : theme.colors.border}
-                strokeWidth={isHighlighted ? 2.5 : 1}
+                x={cx - w / 2 - 5} y={cy - h / 2 - 5}
+                width={w + 10} height={h + 10} rx={3}
+                fill="none"
+                stroke={theme.colors.primary}
+                strokeWidth={2}
             />
-            <text
-                x={table.x + table.width / 2} y={table.y + table.height / 2 - 7}
-                textAnchor="middle" dominantBaseline="central" fontSize={14}
-                fontFamily={theme.fonts.body}
-                fontWeight={isHighlighted ? 600 : 500}
-                fill={isHighlighted ? theme.colors.primary : theme.colors.text}
+            {/* Inner border */}
+            <rect
+                x={cx - w / 2} y={cy - h / 2}
+                width={w} height={h} rx={2}
+                fill="none"
+                stroke={theme.colors.primary}
+                strokeWidth={1}
+            />
+
+            {/* Dance icon (using the image) */}
+            <image
+                href="/Ballroom Dance.png"
+                x={cx - 16} y={cy - 28}
+                width={32} height={32}
+                opacity={0.85}
+            />
+
+            {/* "Dance Floor" text */}
+            <text x={cx} y={cy + 24} textAnchor="middle" dominantBaseline="central"
+                fontSize={20} fontFamily={theme.fonts.heading} fill={theme.colors.primary}
+                fontWeight={500}
             >
-                {name}
-            </text>
-            <text
-                x={table.x + table.width / 2} y={table.y + table.height / 2 + 12}
-                textAnchor="middle" dominantBaseline="central" fontSize={11}
-                fontFamily={theme.fonts.body}
-                fill={theme.colors.textMuted}
-            >
-                {pax}
+                Dance Floor
             </text>
         </g>
     );
 }
 
-/* ─── Ordered Table ─── */
+/* ─── L-Shape Carpet (walkway with clearance) ─── */
+
+function LShapeCarpet() {
+    const color = theme.colors.primary;
+    const opacity = 0.22;
+
+    return (
+        <g>
+            {/* Vertical part — center column (ends at y=1140, spans x in [450, 550]) */}
+            <rect x={450} y={350} width={100} height={790} rx={0}
+                fill={color} opacity={opacity} />
+            {/* Horizontal part — bottom left (starts at x=40, spans y in [1140, 1220]) */}
+            <rect x={40} y={1140} width={510} height={80} rx={0}
+                fill={color} opacity={opacity} />
+        </g>
+    );
+}
+
+/* ─── Round Table ─── */
+
+function RoundTable({ table, isHighlighted }: { table: TableConfig; isHighlighted: boolean }) {
+    const cx = table.x;
+    const cy = table.y;
+    const radius = table.radius ?? 42;
+    const seats = table.seats ?? 10;
+    const seatOrbit = radius + SEAT_RADIUS + SEAT_GAP;
+
+    return (
+        <g id={`table-${table.id}`}>
+            {/* Table body (circle) */}
+            <circle
+                cx={cx} cy={cy} r={radius}
+                fill={isHighlighted ? theme.colors.surfaceMuted : theme.colors.surface}
+                stroke={isHighlighted ? theme.colors.primary : theme.colors.border}
+                strokeWidth={isHighlighted ? 2.5 : 1}
+                filter={isHighlighted ? "url(#highlightGlow)" : "url(#tableShadow)"}
+            />
+            {/* Table number */}
+            <text
+                x={cx} y={cy}
+                textAnchor="middle" dominantBaseline="central"
+                fontSize={15} fontFamily={theme.fonts.body}
+                fontWeight={isHighlighted ? 700 : 500}
+                fill={isHighlighted ? theme.colors.primary : theme.colors.text}
+            >
+                {table.id}
+            </text>
+
+            {/* Seats around the circle */}
+            {Array.from({ length: seats }).map((_, i) => {
+                const angle = (2 * Math.PI * i) / seats - Math.PI / 2;
+                const sx = cx + seatOrbit * Math.cos(angle);
+                const sy = cy + seatOrbit * Math.sin(angle);
+                return (
+                    <rect
+                        key={i}
+                        x={sx - 6} y={sy - 6}
+                        width={12} height={12} rx={3}
+                        fill={isHighlighted ? theme.colors.surfaceMuted : "#F0EBE0"}
+                        stroke={isHighlighted ? theme.colors.primary : theme.colors.border}
+                        strokeWidth={0.6}
+                        opacity={0.75}
+                        transform={`rotate(${(360 * i) / seats}, ${sx}, ${sy})`}
+                    />
+                );
+            })}
+        </g>
+    );
+}
+
+/* ─── Ordered Table (Viking) ─── */
 
 function OrderedTable({
     table, isHighlighted, highlightedSeatId,
@@ -169,7 +319,6 @@ function OrderedTable({
     const rightSeats = table.rightSeats ?? 5;
     const leftSpacing = table.height / leftSeats;
     const rightSpacing = table.height / rightSeats;
-    const { name, pax } = splitLabel(table.label);
 
     return (
         <g id={`table-${table.id}`}>
@@ -183,19 +332,12 @@ function OrderedTable({
             />
             {/* Label above table */}
             <text
-                x={table.x + table.width / 2} y={table.y - 16}
-                textAnchor="middle" fontSize={13} fontFamily={theme.fonts.body}
+                x={table.x + table.width / 2} y={table.y - 14}
+                textAnchor="middle" fontSize={12} fontFamily={theme.fonts.body}
                 fontWeight={isHighlighted ? 600 : 500}
                 fill={isHighlighted ? theme.colors.primary : theme.colors.text}
             >
-                {name}
-            </text>
-            <text
-                x={table.x + table.width / 2} y={table.y - 3}
-                textAnchor="middle" fontSize={10} fontFamily={theme.fonts.body}
-                fill={theme.colors.textMuted}
-            >
-                {pax}
+                {table.label}
             </text>
 
             {/* Left seats */}
@@ -245,120 +387,6 @@ function OrderedTable({
                     </g>
                 );
             })}
-        </g>
-    );
-}
-
-/* ─── VIP Table ─── */
-
-function VipTable({
-    table, isHighlighted, highlightedSeatId,
-}: { table: TableConfig; isHighlighted: boolean; highlightedSeatId: string | null }) {
-    const nearSeats = table.nearSeats ?? 6;
-    const nearSpacing = table.width / nearSeats;
-    const nearSeatId = (i: number) => `table-${table.id}-near-${i + 1}`;
-    const end1SeatId = `table-${table.id}-end1-1`;
-    const end2SeatId = `table-${table.id}-end2-1`;
-    const { name, pax } = splitLabel(table.label);
-
-    return (
-        <g id={`table-${table.id}`}>
-            {/* Table body */}
-            <rect
-                x={table.x} y={table.y} width={table.width} height={table.height} rx={table.height / 2}
-                fill={isHighlighted ? theme.colors.surfaceMuted : theme.colors.surface}
-                stroke={isHighlighted ? theme.colors.primary : theme.colors.border}
-                strokeWidth={isHighlighted ? 2.5 : 1}
-                filter={isHighlighted ? "url(#highlightGlow)" : "url(#tableShadow)"}
-            />
-
-            {/* VIP star badge */}
-            <text
-                x={table.x + table.width / 2}
-                y={table.y + table.height / 2 - 10}
-                textAnchor="middle" dominantBaseline="central"
-                fontSize={14} fill={theme.colors.primary} opacity="0.7"
-            >
-                ★
-            </text>
-
-            {/* Label inside table */}
-            <text
-                x={table.x + table.width / 2} y={table.y + table.height / 2 + 6}
-                textAnchor="middle" dominantBaseline="central" fontSize={13}
-                fontFamily={theme.fonts.body}
-                fontWeight={isHighlighted ? 600 : 500}
-                fill={isHighlighted ? theme.colors.primary : theme.colors.text}
-            >
-                {name}
-            </text>
-            <text
-                x={table.x + table.width / 2} y={table.y + table.height / 2 + 22}
-                textAnchor="middle" dominantBaseline="central" fontSize={10}
-                fontFamily={theme.fonts.body}
-                fill={theme.colors.textMuted}
-            >
-                {pax}
-            </text>
-
-            {/* Near-side seats (top) */}
-            {Array.from({ length: nearSeats }).map((_, i) => {
-                const seatId = nearSeatId(i);
-                const isSeatHighlighted = seatId === highlightedSeatId;
-                const cx = table.x + i * nearSpacing + nearSpacing / 2;
-                const cy = table.y - SEAT_RADIUS - SEAT_GAP;
-                return (
-                    <g key={seatId}>
-                        <circle
-                            id={seatId} cx={cx} cy={cy} r={SEAT_RADIUS}
-                            fill={isSeatHighlighted ? theme.colors.primary : theme.colors.surfaceMuted}
-                            stroke={isSeatHighlighted ? theme.colors.primaryDark : theme.colors.border}
-                            strokeWidth={isSeatHighlighted ? 2 : 0.8}
-                            filter={isSeatHighlighted ? "url(#seatGlow)" : undefined}
-                        />
-                        {isSeatHighlighted && (
-                            <circle cx={cx} cy={cy} r={SEAT_RADIUS + 4}
-                                fill="none" stroke={theme.colors.primary} strokeWidth="1.5"
-                                strokeDasharray="3 3" opacity="0.5" />
-                        )}
-                    </g>
-                );
-            })}
-
-            {/* End seat 1 (left) */}
-            {renderEndSeat(
-                end1SeatId,
-                table.x - SEAT_RADIUS - SEAT_GAP,
-                table.y + table.height / 2,
-                end1SeatId === highlightedSeatId,
-            )}
-
-            {/* End seat 2 (right) */}
-            {renderEndSeat(
-                end2SeatId,
-                table.x + table.width + SEAT_RADIUS + SEAT_GAP,
-                table.y + table.height / 2,
-                end2SeatId === highlightedSeatId,
-            )}
-        </g>
-    );
-}
-
-function renderEndSeat(seatId: string, cx: number, cy: number, isSeatHighlighted: boolean) {
-    return (
-        <g>
-            <circle
-                id={seatId} cx={cx} cy={cy} r={SEAT_RADIUS}
-                fill={isSeatHighlighted ? theme.colors.primary : theme.colors.surfaceMuted}
-                stroke={isSeatHighlighted ? theme.colors.primaryDark : theme.colors.border}
-                strokeWidth={isSeatHighlighted ? 2 : 0.8}
-                filter={isSeatHighlighted ? "url(#seatGlow)" : undefined}
-            />
-            {isSeatHighlighted && (
-                <circle cx={cx} cy={cy} r={SEAT_RADIUS + 4}
-                    fill="none" stroke={theme.colors.primary} strokeWidth="1.5"
-                    strokeDasharray="3 3" opacity="0.5" />
-            )}
         </g>
     );
 }

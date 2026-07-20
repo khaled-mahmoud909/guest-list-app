@@ -19,7 +19,7 @@ export type SearchResult =
     | { type: "multiple"; guests: GuestInfo[] }
     | { type: "notFound" };
 
-const ORDERED_TABLES = new Set([5, 6, 7, 8, 9, 10]);
+const ORDERED_TABLES = new Set([21, 22, 23, 24]);
 
 /* ─── String helpers ─── */
 

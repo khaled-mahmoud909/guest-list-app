@@ -1,13 +1,13 @@
 export const theme = {
     colors: {
-        primary: "#696543",
-        primaryDark: "#4a4730",
-        background: "#F3F2ED",
+        primary: "#86603B",
+        primaryDark: "#6B4C2E",
+        background: "#F7F0E3",
         surface: "#FFFFFF",
-        surfaceMuted: "#E8E6DC",
-        border: "#D8D5C8",
-        text: "#3A3826",
-        textMuted: "#8A876F",
+        surfaceMuted: "#EDE6D6",
+        border: "#C4B89A",
+        text: "#3A2E1E",
+        textMuted: "#8A7A62",
         error: "#9B4A3F",
     },
     fonts: {
